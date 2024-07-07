@@ -15,7 +15,6 @@ public class FilmInlineKeyboard {
         EditMessageReplyMarkup message = new EditMessageReplyMarkup();
         message.setChatId(String.valueOf(chatId));
         message.setMessageId(messageId);
-
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
 
         List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
@@ -26,7 +25,7 @@ public class FilmInlineKeyboard {
         List<InlineKeyboardButton> rowInline5 = new ArrayList<>();
         List<InlineKeyboardButton> rowInline6 = new ArrayList<>();
         List<InlineKeyboardButton> rowInline7 = new ArrayList<>();
-
+        List<InlineKeyboardButton> rowInline8 = new ArrayList<>();
 
         InlineKeyboardButton inlineKeyboardButton11 = new InlineKeyboardButton();
         inlineKeyboardButton11.setText(ACTION.getGenre());
@@ -42,10 +41,10 @@ public class FilmInlineKeyboard {
         inlineKeyboardButton14.setCallbackData("Фильм"+THRILLER.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton21 = new InlineKeyboardButton();
-        inlineKeyboardButton21.setText(HISTORICAL.getGenre());
-        inlineKeyboardButton21.setCallbackData("Фильм"+HISTORICAL.getGenre());
+        inlineKeyboardButton21.setText(CRIME.getGenre());
+        inlineKeyboardButton21.setCallbackData("Фильм" + CRIME.getGenre());
         InlineKeyboardButton inlineKeyboardButton22 = new InlineKeyboardButton();
-        inlineKeyboardButton22.setText(ADVENTURE.getGenre());
+        inlineKeyboardButton22.setText(WESTERN.getGenre());
         inlineKeyboardButton22.setCallbackData("Фильм"+ADVENTURE.getGenre());
         InlineKeyboardButton inlineKeyboardButton23 = new InlineKeyboardButton();
         inlineKeyboardButton23.setText(FANTASTIC.getGenre());
@@ -61,11 +60,8 @@ public class FilmInlineKeyboard {
         inlineKeyboardButton32.setText(HORROR.getGenre());
         inlineKeyboardButton32.setCallbackData("Фильм"+HORROR.getGenre());
         InlineKeyboardButton inlineKeyboardButton33 = new InlineKeyboardButton();
-        inlineKeyboardButton33.setText(CARTOON.getGenre());
-        inlineKeyboardButton33.setCallbackData("Фильм"+CARTOON.getGenre());
-        InlineKeyboardButton inlineKeyboardButton34 = new InlineKeyboardButton();
-        inlineKeyboardButton34.setText(MELODRAMA.getGenre());
-        inlineKeyboardButton34.setCallbackData("Фильм"+MELODRAMA.getGenre());
+        inlineKeyboardButton33.setText(MELODRAMA.getGenre());
+        inlineKeyboardButton33.setCallbackData("Фильм"+MELODRAMA.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton41 = new InlineKeyboardButton();
         inlineKeyboardButton41.setCallbackData("Фильм"+MILITARY.getGenre());
@@ -74,26 +70,30 @@ public class FilmInlineKeyboard {
         inlineKeyboardButton42.setCallbackData("Фильм" + FAMILY.getGenre());
         inlineKeyboardButton42.setText(FAMILY.getGenre());
         InlineKeyboardButton inlineKeyboardButton43 = new InlineKeyboardButton();
-        inlineKeyboardButton43.setCallbackData("Фильм" + DOCUMENTARY.getGenre());
-        inlineKeyboardButton43.setText(DOCUMENTARY.getGenre());
-        InlineKeyboardButton inlineKeyboardButton44 = new InlineKeyboardButton();
-        inlineKeyboardButton44.setCallbackData("Фильм" + CHILDREN.getGenre());
-        inlineKeyboardButton44.setText(CHILDREN.getGenre());
+        inlineKeyboardButton43.setCallbackData("Фильм" + CHILDREN.getGenre());
+        inlineKeyboardButton43.setText(CHILDREN.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton51 = new InlineKeyboardButton();
-        inlineKeyboardButton51.setText(CRIME.getGenre());
-        inlineKeyboardButton51.setCallbackData("Фильм" + CRIME.getGenre());
+        inlineKeyboardButton51.setCallbackData("Фильм" + DOCUMENTARY.getGenre());
+        inlineKeyboardButton51.setText(DOCUMENTARY.getGenre());
         InlineKeyboardButton inlineKeyboardButton52 = new InlineKeyboardButton();
-        inlineKeyboardButton52.setCallbackData("Фильм" + WESTERN.getGenre());
-        inlineKeyboardButton52.setText(WESTERN.getGenre());
+        inlineKeyboardButton52.setText(CARTOON.getGenre());
+        inlineKeyboardButton52.setCallbackData("Фильм"+CARTOON.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton61 = new InlineKeyboardButton();
-        inlineKeyboardButton61.setCallbackData("ПолучитьФильм");
-        inlineKeyboardButton61.setText("Сгенерировать");
+        inlineKeyboardButton61.setText(HISTORICAL.getGenre());
+        inlineKeyboardButton61.setCallbackData("Фильм"+HISTORICAL.getGenre());
+        InlineKeyboardButton inlineKeyboardButton62 = new InlineKeyboardButton();
+        inlineKeyboardButton62.setCallbackData("Фильм" +ADVENTURE.getGenre());
+        inlineKeyboardButton62.setText(ADVENTURE.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton71 = new InlineKeyboardButton();
-        inlineKeyboardButton71.setText("Назад");
-        inlineKeyboardButton71.setCallbackData("Back");
+        inlineKeyboardButton71.setCallbackData("ПолучитьФильм");
+        inlineKeyboardButton71.setText("Сгенерировать");
+
+        InlineKeyboardButton inlineKeyboardButton81 = new InlineKeyboardButton();
+        inlineKeyboardButton81.setCallbackData("Back");
+        inlineKeyboardButton81.setText("Назад");
 
         rowInline1.add(inlineKeyboardButton11);
         rowInline1.add(inlineKeyboardButton12);
@@ -108,12 +108,10 @@ public class FilmInlineKeyboard {
         rowInline3.add(inlineKeyboardButton31);
         rowInline3.add(inlineKeyboardButton32);
         rowInline3.add(inlineKeyboardButton33);
-        rowInline3.add(inlineKeyboardButton34);
 
         rowInline4.add(inlineKeyboardButton41);
         rowInline4.add(inlineKeyboardButton42);
         rowInline4.add(inlineKeyboardButton43);
-        rowInline4.add(inlineKeyboardButton44);
 
         rowInline5.add(inlineKeyboardButton51);
         rowInline5.add(inlineKeyboardButton52);
@@ -122,6 +120,8 @@ public class FilmInlineKeyboard {
 
         rowInline7.add(inlineKeyboardButton71);
 
+        rowInline8.add(inlineKeyboardButton81);
+
         rowsInline.add(rowInline1);
         rowsInline.add(rowInline2);
         rowsInline.add(rowInline3);
@@ -129,6 +129,7 @@ public class FilmInlineKeyboard {
         rowsInline.add(rowInline5);
         rowsInline.add(rowInline6);
         rowsInline.add(rowInline7);
+        rowsInline.add(rowInline8);
 
 
         markupInline.setKeyboard(rowsInline);

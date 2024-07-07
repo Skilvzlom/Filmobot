@@ -46,7 +46,7 @@ public class Bot extends TelegramLongPollingBot {
             if (StartTypes.types().contains(messageText)){
                 start.onUpdateReceived(update);
             } else {
-                Sender.sendMessage(chatId, "Unrecognized message");
+                execute(Sender.sendMessage(chatId, "Unrecognized message"));
             }
         } else if (update.hasCallbackQuery()){
             log.info("Replied to " + update.getCallbackQuery().getMessage().getChat().getUserName());

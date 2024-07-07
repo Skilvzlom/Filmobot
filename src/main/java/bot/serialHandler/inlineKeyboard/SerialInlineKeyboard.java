@@ -25,6 +25,7 @@ public class SerialInlineKeyboard {
         List<InlineKeyboardButton> rowInline5 = new ArrayList<>();
         List<InlineKeyboardButton> rowInline6 = new ArrayList<>();
         List<InlineKeyboardButton> rowInline7 = new ArrayList<>();
+        List<InlineKeyboardButton> rowInline8 = new ArrayList<>();
 
         InlineKeyboardButton inlineKeyboardButton11 = new InlineKeyboardButton();
         inlineKeyboardButton11.setText(ACTION.getGenre());
@@ -40,10 +41,10 @@ public class SerialInlineKeyboard {
         inlineKeyboardButton14.setCallbackData("Сериал"+THRILLER.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton21 = new InlineKeyboardButton();
-        inlineKeyboardButton21.setText(HISTORICAL.getGenre());
-        inlineKeyboardButton21.setCallbackData("Сериал"+HISTORICAL.getGenre());
+        inlineKeyboardButton21.setText(CRIME.getGenre());
+        inlineKeyboardButton21.setCallbackData("Сериал" + CRIME.getGenre());
         InlineKeyboardButton inlineKeyboardButton22 = new InlineKeyboardButton();
-        inlineKeyboardButton22.setText(ADVENTURE.getGenre());
+        inlineKeyboardButton22.setText(WESTERN.getGenre());
         inlineKeyboardButton22.setCallbackData("Сериал"+ADVENTURE.getGenre());
         InlineKeyboardButton inlineKeyboardButton23 = new InlineKeyboardButton();
         inlineKeyboardButton23.setText(FANTASTIC.getGenre());
@@ -59,11 +60,8 @@ public class SerialInlineKeyboard {
         inlineKeyboardButton32.setText(HORROR.getGenre());
         inlineKeyboardButton32.setCallbackData("Сериал"+HORROR.getGenre());
         InlineKeyboardButton inlineKeyboardButton33 = new InlineKeyboardButton();
-        inlineKeyboardButton33.setText(CARTOON.getGenre());
-        inlineKeyboardButton33.setCallbackData("Сериал"+CARTOON.getGenre());
-        InlineKeyboardButton inlineKeyboardButton34 = new InlineKeyboardButton();
-        inlineKeyboardButton34.setText(MELODRAMA.getGenre());
-        inlineKeyboardButton34.setCallbackData("Сериал"+MELODRAMA.getGenre());
+        inlineKeyboardButton33.setText(MELODRAMA.getGenre());
+        inlineKeyboardButton33.setCallbackData("Сериал"+MELODRAMA.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton41 = new InlineKeyboardButton();
         inlineKeyboardButton41.setCallbackData("Сериал"+MILITARY.getGenre());
@@ -72,26 +70,30 @@ public class SerialInlineKeyboard {
         inlineKeyboardButton42.setCallbackData("Сериал" + FAMILY.getGenre());
         inlineKeyboardButton42.setText(FAMILY.getGenre());
         InlineKeyboardButton inlineKeyboardButton43 = new InlineKeyboardButton();
-        inlineKeyboardButton43.setCallbackData("Сериал" + DOCUMENTARY.getGenre());
-        inlineKeyboardButton43.setText(DOCUMENTARY.getGenre());
-        InlineKeyboardButton inlineKeyboardButton44 = new InlineKeyboardButton();
-        inlineKeyboardButton44.setCallbackData("Сериал" + CHILDREN.getGenre());
-        inlineKeyboardButton44.setText(CHILDREN.getGenre());
+        inlineKeyboardButton43.setCallbackData("Сериал" + CHILDREN.getGenre());
+        inlineKeyboardButton43.setText(CHILDREN.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton51 = new InlineKeyboardButton();
-        inlineKeyboardButton51.setText(CRIME.getGenre());
-        inlineKeyboardButton51.setCallbackData("Сериал" + CRIME.getGenre());
+        inlineKeyboardButton51.setCallbackData("Сериал" + DOCUMENTARY.getGenre());
+        inlineKeyboardButton51.setText(DOCUMENTARY.getGenre());
         InlineKeyboardButton inlineKeyboardButton52 = new InlineKeyboardButton();
-        inlineKeyboardButton52.setCallbackData("Сериал" + WESTERN.getGenre());
-        inlineKeyboardButton52.setText(WESTERN.getGenre());
+        inlineKeyboardButton52.setText(CARTOON.getGenre());
+        inlineKeyboardButton52.setCallbackData("Сериал"+CARTOON.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton61 = new InlineKeyboardButton();
-        inlineKeyboardButton61.setCallbackData("ПолучитьСериал");
-        inlineKeyboardButton61.setText("Сгенерировать");
+        inlineKeyboardButton61.setText(HISTORICAL.getGenre());
+        inlineKeyboardButton61.setCallbackData("Сериал"+HISTORICAL.getGenre());
+        InlineKeyboardButton inlineKeyboardButton62 = new InlineKeyboardButton();
+        inlineKeyboardButton62.setCallbackData("Сериал" +ADVENTURE.getGenre());
+        inlineKeyboardButton62.setText(ADVENTURE.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton71 = new InlineKeyboardButton();
-        inlineKeyboardButton71.setCallbackData("Back");
-        inlineKeyboardButton71.setText("Назад");
+        inlineKeyboardButton71.setCallbackData("ПолучитьСериал");
+        inlineKeyboardButton71.setText("Сгенерировать");
+
+        InlineKeyboardButton inlineKeyboardButton81 = new InlineKeyboardButton();
+        inlineKeyboardButton81.setCallbackData("Back");
+        inlineKeyboardButton81.setText("Назад");
 
         rowInline1.add(inlineKeyboardButton11);
         rowInline1.add(inlineKeyboardButton12);
@@ -106,12 +108,10 @@ public class SerialInlineKeyboard {
         rowInline3.add(inlineKeyboardButton31);
         rowInline3.add(inlineKeyboardButton32);
         rowInline3.add(inlineKeyboardButton33);
-        rowInline3.add(inlineKeyboardButton34);
 
         rowInline4.add(inlineKeyboardButton41);
         rowInline4.add(inlineKeyboardButton42);
         rowInline4.add(inlineKeyboardButton43);
-        rowInline4.add(inlineKeyboardButton44);
 
         rowInline5.add(inlineKeyboardButton51);
         rowInline5.add(inlineKeyboardButton52);
@@ -120,6 +120,8 @@ public class SerialInlineKeyboard {
 
         rowInline7.add(inlineKeyboardButton71);
 
+        rowInline8.add(inlineKeyboardButton81);
+
         rowsInline.add(rowInline1);
         rowsInline.add(rowInline2);
         rowsInline.add(rowInline3);
@@ -127,6 +129,7 @@ public class SerialInlineKeyboard {
         rowsInline.add(rowInline5);
         rowsInline.add(rowInline6);
         rowsInline.add(rowInline7);
+        rowsInline.add(rowInline8);
 
 
         markupInline.setKeyboard(rowsInline);
