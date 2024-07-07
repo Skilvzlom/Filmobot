@@ -1,5 +1,6 @@
 package bot.filmHandler;
 
+import DB.DBInserts;
 import bot.filmHandler.inlineKeyboard.FilmInlineKeyboard;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -24,13 +25,22 @@ public class FilmSelectionHandler extends TelegramLongPollingBot {
         if (update.hasCallbackQuery()){
             int messageId = update.getCallbackQuery().getMessage().getMessageId();
             long chatId = update.getCallbackQuery().getMessage().getChatId();
+            long userId = update.getCallbackQuery().getFrom().getId();
             String callData = update.getCallbackQuery().getData();
 
             if (callData.equals("Фильм")){
                 try{
-                    execute(FilmInlineKeyboard.filmInlineKeyboard(chatId, messageId));
+                    execute(FilmInlineKeyboard.filmInlineKeyboard(chatId, messageId, userId));
                 } catch (TelegramApiException e){
                     log.warn("Error " + e);
+                }
+            } else if (FilmTypes.types().contains(callData)) {
+                DBInserts.insertIntoGenres(userId, callData);
+
+                try {
+                    execute(FilmInlineKeyboard.filmInlineKeyboard(chatId, messageId, userId));
+                } catch (TelegramApiException e){
+                    log.warn("Error with Film types " + e);
                 }
             }
         }

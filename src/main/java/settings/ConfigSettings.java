@@ -1,6 +1,7 @@
 package settings;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -15,13 +16,13 @@ public class ConfigSettings {
     private String botToken;
     private String botUserName;
     private String XApiToken;
+    private String dbUrl;
+    private String dbUser;
+    private String dbPassword;
     private Properties properties;
 
+    @Getter
     private static ConfigSettings instance = new ConfigSettings();
-
-    public static ConfigSettings getInstance(){
-        return instance;
-    }
 
     {
         try {
@@ -42,9 +43,24 @@ public class ConfigSettings {
                 throw new RuntimeException("Bot UserName is null");
             }
 
-            XApiToken = properties.getProperty("X-API_TOKEN");
+            XApiToken = properties.getProperty("X-API-TOKEN");
             if (XApiToken == null){
                 throw new RuntimeException("X-API-TOKEN is null");
+            }
+
+            dbUrl = properties.getProperty("db.url");
+            if (dbUrl == null){
+                throw new RuntimeException("Database url is null");
+            }
+
+            dbUser = properties.getProperty("db.user");
+            if(dbUser == null){
+                throw new RuntimeException("Database username is null");
+            }
+
+            dbPassword = properties.getProperty("db.password");
+            if(dbPassword == null){
+                throw new RuntimeException("Database password is null");
             }
 
         } catch (RuntimeException | IOException e){

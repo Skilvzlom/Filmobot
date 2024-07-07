@@ -1,5 +1,7 @@
 package bot;
 
+import DB.DBGetters;
+import DB.DBInserts;
 import bot.animeHandler.AnimeSelectionHandler;
 import bot.animeHandler.AnimeTypes;
 import bot.filmHandler.FilmSelectionHandler;
@@ -13,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import settings.ConfigSettings;
-import settings.MessageConst;
 import settings.Sender;
 
 @Slf4j
@@ -51,20 +52,14 @@ public class Bot extends TelegramLongPollingBot {
         } else if (update.hasCallbackQuery()){
             log.info("Replied to " + update.getCallbackQuery().getMessage().getChat().getUserName());
             String call_data = update.getCallbackQuery().getData();
-            if (call_data.equals("Фильм")){
+            if (call_data.contains("Фильм")){
                 film.onUpdateReceived(update);
-            } else if (call_data.equals("Сериал")){
+            } else if (call_data.contains("Сериал")){
                 serial.onUpdateReceived(update);
-            } else if (call_data.equals("Аниме")){
+            } else if (call_data.contains("Аниме")){
                 anime.onUpdateReceived(update);
-            } else if (call_data.equals("Random")){
+            } else if (call_data.contains("Random")){
 
-            } else if (SerialTypes.types().contains(call_data)){
-                serial.onUpdateReceived(update);
-            } else if (AnimeTypes.types().contains(call_data)){
-                anime.onUpdateReceived(update);
-            } else if (FilmTypes.types().contains(call_data)){
-                film.onUpdateReceived(update);
             } else if (call_data.equals("Back")){
                 start.onUpdateReceived(update);
             }

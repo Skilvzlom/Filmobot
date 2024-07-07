@@ -1,9 +1,11 @@
 package bot.filmHandler.inlineKeyboard;
 
+import DB.DBGetters;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
+import settings.EmojiConst;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +13,13 @@ import java.util.List;
 import static settings.enums.Genres.*;
 public class FilmInlineKeyboard {
 
-    public static EditMessageReplyMarkup filmInlineKeyboard(long chatId, int messageId){
+    public static EditMessageReplyMarkup filmInlineKeyboard(long chatId, int messageId, long userId){
         EditMessageReplyMarkup message = new EditMessageReplyMarkup();
         message.setChatId(String.valueOf(chatId));
         message.setMessageId(messageId);
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
+
+        Boolean[] flags = DBGetters.getFilmFlags(userId);
 
         List<List<InlineKeyboardButton>> rowsInline = new ArrayList<>();
         List<InlineKeyboardButton> rowInline1 = new ArrayList<>();
@@ -28,64 +32,65 @@ public class FilmInlineKeyboard {
         List<InlineKeyboardButton> rowInline8 = new ArrayList<>();
 
         InlineKeyboardButton inlineKeyboardButton11 = new InlineKeyboardButton();
-        inlineKeyboardButton11.setText(ACTION.getGenre());
+        assert flags != null;
+        inlineKeyboardButton11.setText(flags[0]? ACTION.getGenre() + EmojiConst.OK :ACTION.getGenre());
         inlineKeyboardButton11.setCallbackData("Фильм"+ACTION.getGenre());
         InlineKeyboardButton inlineKeyboardButton12 = new InlineKeyboardButton();
         inlineKeyboardButton12.setCallbackData("Фильм"+COMEDY.getGenre());
-        inlineKeyboardButton12.setText(COMEDY.getGenre());
+        inlineKeyboardButton12.setText(flags[2]?COMEDY.getGenre()+EmojiConst.OK:COMEDY.getGenre());
         InlineKeyboardButton inlineKeyboardButton13 = new InlineKeyboardButton();
-        inlineKeyboardButton13.setText(DRAMA.getGenre());
+        inlineKeyboardButton13.setText(flags[1]?DRAMA.getGenre()+EmojiConst.OK: DRAMA.getGenre());
         inlineKeyboardButton13.setCallbackData("Фильм"+DRAMA.getGenre());
         InlineKeyboardButton inlineKeyboardButton14 = new InlineKeyboardButton();
-        inlineKeyboardButton14.setText(THRILLER.getGenre());
+        inlineKeyboardButton14.setText(flags[3]? THRILLER.getGenre() + EmojiConst.OK : THRILLER.getGenre());
         inlineKeyboardButton14.setCallbackData("Фильм"+THRILLER.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton21 = new InlineKeyboardButton();
-        inlineKeyboardButton21.setText(CRIME.getGenre());
-        inlineKeyboardButton21.setCallbackData("Фильм" + CRIME.getGenre());
+        inlineKeyboardButton21.setText(flags[15]?CHILDREN.getGenre()+EmojiConst.OK: CHILDREN.getGenre());
+        inlineKeyboardButton21.setCallbackData("Фильм" + CHILDREN.getGenre());
         InlineKeyboardButton inlineKeyboardButton22 = new InlineKeyboardButton();
-        inlineKeyboardButton22.setText(WESTERN.getGenre());
-        inlineKeyboardButton22.setCallbackData("Фильм"+ADVENTURE.getGenre());
+        inlineKeyboardButton22.setText(flags[17]?WESTERN.getGenre()+EmojiConst.OK: WESTERN.getGenre());
+        inlineKeyboardButton22.setCallbackData("Фильм"+WESTERN.getGenre());
         InlineKeyboardButton inlineKeyboardButton23 = new InlineKeyboardButton();
-        inlineKeyboardButton23.setText(FANTASTIC.getGenre());
-        inlineKeyboardButton23.setCallbackData("Фильм"+FANTASTIC.getGenre());
+        inlineKeyboardButton23.setText(flags[7]?HORROR.getGenre()+EmojiConst.OK: HORROR.getGenre());
+        inlineKeyboardButton23.setCallbackData("Фильм"+HORROR.getGenre());
         InlineKeyboardButton inlineKeyboardButton24 = new InlineKeyboardButton();
-        inlineKeyboardButton24.setText(FANTASY.getGenre());
+        inlineKeyboardButton24.setText(flags[5]?FANTASY.getGenre()+EmojiConst.OK: FANTASY.getGenre());
         inlineKeyboardButton24.setCallbackData("Фильм"+FANTASY.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton31 = new InlineKeyboardButton();
-        inlineKeyboardButton31.setText(DETECTIVE.getGenre());
+        inlineKeyboardButton31.setText(flags[6]?DETECTIVE.getGenre()+EmojiConst.OK: DETECTIVE.getGenre());
         inlineKeyboardButton31.setCallbackData("Фильм"+DETECTIVE.getGenre());
         InlineKeyboardButton inlineKeyboardButton32 = new InlineKeyboardButton();
-        inlineKeyboardButton32.setText(HORROR.getGenre());
-        inlineKeyboardButton32.setCallbackData("Фильм"+HORROR.getGenre());
+        inlineKeyboardButton32.setText(flags[4]?FANTASTIC.getGenre()+EmojiConst.OK: FANTASTIC.getGenre());
+        inlineKeyboardButton32.setCallbackData("Фильм"+FANTASTIC.getGenre());
         InlineKeyboardButton inlineKeyboardButton33 = new InlineKeyboardButton();
-        inlineKeyboardButton33.setText(MELODRAMA.getGenre());
+        inlineKeyboardButton33.setText(flags[9]?MELODRAMA.getGenre()+EmojiConst.OK: MELODRAMA.getGenre());
         inlineKeyboardButton33.setCallbackData("Фильм"+MELODRAMA.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton41 = new InlineKeyboardButton();
         inlineKeyboardButton41.setCallbackData("Фильм"+MILITARY.getGenre());
-        inlineKeyboardButton41.setText(MILITARY.getGenre());
+        inlineKeyboardButton41.setText(flags[11]?MILITARY.getGenre()+EmojiConst.OK: MILITARY.getGenre());
         InlineKeyboardButton inlineKeyboardButton42 = new InlineKeyboardButton();
         inlineKeyboardButton42.setCallbackData("Фильм" + FAMILY.getGenre());
-        inlineKeyboardButton42.setText(FAMILY.getGenre());
+        inlineKeyboardButton42.setText(flags[12]?FAMILY.getGenre()+EmojiConst.OK: FAMILY.getGenre());
         InlineKeyboardButton inlineKeyboardButton43 = new InlineKeyboardButton();
-        inlineKeyboardButton43.setCallbackData("Фильм" + CHILDREN.getGenre());
-        inlineKeyboardButton43.setText(CHILDREN.getGenre());
+        inlineKeyboardButton43.setCallbackData("Фильм" + CRIME.getGenre());
+        inlineKeyboardButton43.setText(flags[16]?CRIME.getGenre()+EmojiConst.OK: CRIME.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton51 = new InlineKeyboardButton();
         inlineKeyboardButton51.setCallbackData("Фильм" + DOCUMENTARY.getGenre());
-        inlineKeyboardButton51.setText(DOCUMENTARY.getGenre());
+        inlineKeyboardButton51.setText(flags[14]?DOCUMENTARY.getGenre()+EmojiConst.OK: DOCUMENTARY.getGenre());
         InlineKeyboardButton inlineKeyboardButton52 = new InlineKeyboardButton();
-        inlineKeyboardButton52.setText(CARTOON.getGenre());
+        inlineKeyboardButton52.setText(flags[8]?CARTOON.getGenre()+EmojiConst.OK: CARTOON.getGenre());
         inlineKeyboardButton52.setCallbackData("Фильм"+CARTOON.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton61 = new InlineKeyboardButton();
-        inlineKeyboardButton61.setText(HISTORICAL.getGenre());
+        inlineKeyboardButton61.setText(flags[13]?HISTORICAL.getGenre()+EmojiConst.OK: HISTORICAL.getGenre());
         inlineKeyboardButton61.setCallbackData("Фильм"+HISTORICAL.getGenre());
         InlineKeyboardButton inlineKeyboardButton62 = new InlineKeyboardButton();
         inlineKeyboardButton62.setCallbackData("Фильм" +ADVENTURE.getGenre());
-        inlineKeyboardButton62.setText(ADVENTURE.getGenre());
+        inlineKeyboardButton62.setText(flags[10]?ADVENTURE.getGenre()+EmojiConst.OK: ADVENTURE.getGenre());
 
         InlineKeyboardButton inlineKeyboardButton71 = new InlineKeyboardButton();
         inlineKeyboardButton71.setCallbackData("ПолучитьФильм");

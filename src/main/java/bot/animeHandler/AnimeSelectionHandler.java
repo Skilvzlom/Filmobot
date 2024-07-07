@@ -1,5 +1,6 @@
 package bot.animeHandler;
 
+import DB.DBInserts;
 import bot.animeHandler.inlineKeyboard.AnimeInlineKeyboard;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -24,15 +25,23 @@ public class AnimeSelectionHandler extends TelegramLongPollingBot {
         if(update.hasCallbackQuery()) {
             int messageId = update.getCallbackQuery().getMessage().getMessageId();
             long chatId = update.getCallbackQuery().getMessage().getChatId();
+            long userId = update.getCallbackQuery().getFrom().getId();
             String callData = update.getCallbackQuery().getData();
 
             if (callData.equals("Аниме")) {
                 try {
-                    execute(AnimeInlineKeyboard.animeInlineKeyboard(chatId, messageId));
+                    execute(AnimeInlineKeyboard.animeInlineKeyboard(chatId, messageId, userId));
                 } catch (TelegramApiException e) {
                     log.warn("Error " + e);
                 }
 
+            } else if (AnimeTypes.types().contains(callData)) {
+                DBInserts.insertIntoGenres(userId, callData);
+                try {
+                    execute(AnimeInlineKeyboard.animeInlineKeyboard(chatId, messageId, userId));
+                } catch (TelegramApiException e){
+                    log.warn("Error with Anime flags " + e);
+                }
             }
         }
     }

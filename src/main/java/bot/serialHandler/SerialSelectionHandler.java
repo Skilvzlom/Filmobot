@@ -1,5 +1,6 @@
 package bot.serialHandler;
 
+import DB.DBInserts;
 import bot.serialHandler.inlineKeyboard.SerialInlineKeyboard;
 import lombok.extern.slf4j.Slf4j;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -26,15 +27,22 @@ public class SerialSelectionHandler extends TelegramLongPollingBot {
         if(update.hasCallbackQuery()) {
             int messageId = update.getCallbackQuery().getMessage().getMessageId();
             long chatId = update.getCallbackQuery().getMessage().getChatId();
+            long userId = update.getCallbackQuery().getFrom().getId();
             String callData = update.getCallbackQuery().getData();
 
             if (callData.equals("Сериал")) {
                 try {
-                    execute(SerialInlineKeyboard.serialInlineKeyboard(chatId, messageId));
+                    execute(SerialInlineKeyboard.serialInlineKeyboard(chatId, messageId, userId));
                 } catch (TelegramApiException e) {
                     log.warn("Error " + e);
                 }
-
+            } else if (SerialTypes.types().contains(callData)) {
+                DBInserts.insertIntoGenres(userId, callData);
+                try {
+                    execute(SerialInlineKeyboard.serialInlineKeyboard(chatId, messageId, userId));
+                } catch (TelegramApiException e){
+                    log.warn("Error with serial buttons " + e);
+                }
             }
         }
     }
