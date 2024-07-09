@@ -1,5 +1,6 @@
 package bot.filmHandler;
 
+import DB.DBGetters;
 import DB.DBInserts;
 import bot.filmHandler.inlineKeyboard.FilmInlineKeyboard;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +8,11 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import settings.ConfigSettings;
+import settings.GetFormattingMessagePhoto;
+import settings.GetResponse;
+
+import java.net.http.HttpResponse;
+
 @Slf4j
 public class FilmSelectionHandler extends TelegramLongPollingBot {
     private final static ConfigSettings config = ConfigSettings.getInstance();
@@ -41,6 +47,14 @@ public class FilmSelectionHandler extends TelegramLongPollingBot {
                     execute(FilmInlineKeyboard.filmInlineKeyboard(chatId, messageId, userId));
                 } catch (TelegramApiException e){
                     log.warn("Error with Film types " + e);
+                }
+            } else if (callData.equals("ПолучитьФильм")) {
+                HttpResponse<String> response = GetResponse.getResponse(callData, DBGetters.getFilmFlags(userId));
+                try {
+                    //execute(GetFormattingMessagePhoto.sendPhoto(chatId, response));
+                    execute(GetFormattingMessagePhoto.formatMessage(chatId, response));
+                }catch (TelegramApiException e ){
+                    System.out.println("Error");
                 }
             }
         }

@@ -12,7 +12,6 @@ public class DBInserts {
     private static final Connection connection = DBConnector.getConnection();
 
     public static void insertNewUser(long userId, String username){
-        if (!DBGetters.hasUser(userId)) {
             String userResponse = String.format("INSERT IGNORE INTO %s.%s SET %s = %d, %s = '%s';", DBConst.DATABASE, DBConst.USERTABLE,
                     DBConst.ID, userId, DBConst.USERNAME, username);
             try {
@@ -43,7 +42,6 @@ public class DBInserts {
                 System.out.println("Error1");
                 log.warn("Error with create new user");
             }
-        }
     }
 
     public static void insertIntoGenres(long userId, String callData){
